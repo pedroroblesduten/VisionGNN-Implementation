@@ -39,6 +39,6 @@ class LoadData:
     def get_dataloader(self):
         train_loader = DataLoader(self.train_subset, batch_size=self.batch_size, shuffle=True)
         val_loader = DataLoader(self.val_subset, batch_size=self.batch_size, shuffle=False)
-        return train_loader
+        return train_loader, val_loader
 
 
