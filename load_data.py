@@ -16,10 +16,12 @@ class LoadData:
         self.random_seed = random_seed
 
 
-        self.transform = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+        self.transform = transforms.Compose([
+            transforms.Resize(256, 256),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
         )
-        
+
         self.full_dataset = torchvision.datasets.STL10(
             root=root,
             split="train",
@@ -39,6 +41,7 @@ class LoadData:
     def get_dataloader(self):
         train_loader = DataLoader(self.train_subset, batch_size=self.batch_size, shuffle=True)
         val_loader = DataLoader(self.val_subset, batch_size=self.batch_size, shuffle=False)
+
         return train_loader, val_loader
 
 
